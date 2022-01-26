@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>予測作成画面</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" 
+         href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <h2>学習用と予測するファイルを選択</h2>
+        <form method="POST" action="{% url 'predict_exe' %}">
+            {% csrf_token %}
+            {% for i in all_data %}
+                <p>
+                    <input type="checkbox" name="select_files"
+                     value="{{ i.id }}" id="select_files">
+                    {{ i.file.url }}
+                </p>
+            {% empty %}
+                <p>選択できるファイルはありません</p>
+            {% endfor %}
+            <button type="submit">作成</button>
+        </form>
+        <p><a href="/">一覧画面に戻る</a></p>
+    </body>
+</html>

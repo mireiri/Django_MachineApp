@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>説明画面</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" 
+         href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <ul>
+            <li>アップロード</li>
+                Excelファイルをアップロードする画面です。
+                Excelは「.xlsx」であることに注意してください。
+            <li>予測作成</li>
+                単回帰予測を実行する画面です。
+                予測したいファイル名には必ず「predict」を含めてください。
+            <li>グラフ作成</li>
+                アップロードしているExcelファイルのデータを使ってグラフを作成します。
+            <li>ダウンロード・削除</li>
+                予測結果が反映されたExcelファイルやグラフをダウンロード・削除する画面です。
+        </ul>
+        <p><a href="/">一覧画面に戻る</a></p>
+    </body>
+</html>

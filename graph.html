@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>グラフ作成画面</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" 
+         href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <h2>グラフを作成したいファイルを選択</h2>
+        {% for i in all_data %}
+            {% if not 'predict' in i.file|stringformat:"s"%}
+                <form method="GET" action="{% url 'graph_exe' id=i.id %}">
+                    <p>
+                        【{{ i.file }}】| 
+                        <input value="作成" type="submit" name="selected_file">
+                    </p>
+                </form>
+            {% endif %}
+        {% empty %}
+            <p>選択できるファイルがありません</p>
+        {% endfor %}
+        <p><a href="/">一覧画面に戻る</a></p>
+    </body>
+</html>

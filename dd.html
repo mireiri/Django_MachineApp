@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>ダウンロード・削除画面</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" 
+         href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flashmsg">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <h2>ダウンロード・削除するファイルを選択</h2>
+        <table>
+            <tr>
+                <th>ファイル名</th>
+                <th>ダウンロード</th>
+                <th>削除</th>
+            </tr>
+            {% for i in files %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td><a href="{% url 'download' path=i %}" class="download">ダウンロード</a></td>
+                    <td><a href="{% url 'output_delete' path=i %}" class="delete">削除</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>ファイルがありません</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+            {% endfor %}
+        </table> 
+        <p><a href="/">一覧画面に戻る</a></p>
+    </body>
+</html>
